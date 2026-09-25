@@ -37,6 +37,7 @@ class SiteSetting extends Model
 
         Cache::forget("site_setting_{$key}");
         Cache::forget('site_settings_all');
+        Cache::forget('site_settings_map');
 
         return $setting;
     }
@@ -47,6 +48,13 @@ class SiteSetting extends Model
             return static::all()->groupBy('group')->map(function ($items) {
                 return $items->pluck('value', 'key');
             })->toArray();
+        });
+    }
+
+    public static function getAllMap(): array
+    {
+        return Cache::rememberForever('site_settings_map', function () {
+            return static::all()->pluck('value', 'key')->toArray();
         });
     }
 }

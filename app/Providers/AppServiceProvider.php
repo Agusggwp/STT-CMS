@@ -21,18 +21,24 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useTailwind();
 
         try {
-            if (Schema::hasTable('site_settings')) {
-                View::composer('*', function ($view) {
-                    $settings = SiteSetting::all()->pluck('value', 'key')->toArray();
-                    $unreadMessagesCount = 0;
-                    if (Schema::hasTable('contact_messages')) {
-                        $unreadMessagesCount = ContactMessage::where('is_read', false)->count();
-                    }
+            View::composer('*', function ($view) {
+                static $memoizedSettings = null;
+                static $memoizedUnreadCount = null;
 
-                    $view->with('siteSettings', $settings);
-                    $view->with('unreadMessagesCount', $unreadMessagesCount);
-                });
-            }
+                if ($memoizedSettings === null) {
+                    $memoizedSettings = SiteSetting::getAllMap();
+                }
+
+                if ($memoizedUnreadCount === null) {
+                    // Only compute unread message count for authenticated admins
+                    $memoizedUnreadCount = auth()->check()
+                        ? ContactMessage::where('is_read', false)->count()
+                        : 0;
+                }
+
+                $view->with('siteSettings', $memoizedSettings);
+                $view->with('unreadMessagesCount', $memoizedUnreadCount);
+            });
         } catch (\Throwable $e) {
             // Graceful fallback during migration / CLI
         }

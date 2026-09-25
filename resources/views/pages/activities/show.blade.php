@@ -50,6 +50,8 @@
         <div class="border border-[#E5E5E5] p-2 bg-white">
             <img src="{{ $activity->thumbnail_url }}"
                  alt="{{ $activity->title }}"
+                 fetchpriority="high"
+                 decoding="async"
                  class="w-full h-[360px] sm:h-[480px] object-cover object-center">
         </div>
 
@@ -70,6 +72,8 @@
                         <div class="border border-[#E5E5E5] p-2 bg-white">
                             <img src="{{ str_starts_with($img, 'http') ? $img : asset('storage/' . $img) }}"
                                  alt="Dokumentasi {{ $activity->title }}"
+                                 loading="lazy"
+                                 decoding="async"
                                  class="w-full h-64 object-cover object-center">
                         </div>
                     @endforeach
@@ -87,7 +91,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     @foreach($relatedActivities as $rel)
                         <a href="{{ route('activities.show', $rel->slug) }}" class="border border-[#E5E5E5] p-3 bg-white block group hover:border-[#8B1E24]">
-                            <img src="{{ $rel->thumbnail_url }}" alt="{{ $rel->title }}" class="w-full h-36 object-cover object-center">
+                            <img src="{{ $rel->thumbnail_url }}" alt="{{ $rel->title }}" loading="lazy" decoding="async" class="w-full h-36 object-cover object-center">
                             <span class="block text-[11px] text-[#8B1E24] font-semibold uppercase mt-2">{{ $rel->category->name ?? 'Kegiatan' }}</span>
                             <h4 class="text-xs font-bold text-[#1F1F1F] mt-1 group-hover:text-[#8B1E24] line-clamp-2">{{ $rel->title }}</h4>
                         </a>

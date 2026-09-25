@@ -39,9 +39,7 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-        $galleryAlbums = GalleryAlbum::with(['images' => function ($q) {
-            $q->orderBy('order', 'asc');
-        }])
+        $galleryAlbums = GalleryAlbum::withCount('images')
             ->published()
             ->orderBy('order', 'asc')
             ->take(6)

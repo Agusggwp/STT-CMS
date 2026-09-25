@@ -30,7 +30,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 @if($ketua)
                     <div class="border border-[#8B1E24] p-4 bg-white text-center space-y-4">
-                        <img src="{{ $ketua->photo_url }}" alt="{{ $ketua->name }}" class="w-40 h-48 mx-auto object-cover object-center filter grayscale-10">
+                        <img src="{{ $ketua->photo_url }}" alt="{{ $ketua->name }}" loading="lazy" decoding="async" class="w-40 h-48 mx-auto object-cover object-center filter grayscale-10">
                         <div>
                             <span class="inline-block px-3 py-1 bg-[#8B1E24] text-white text-[10px] font-bold uppercase tracking-wider">
                                 {{ $ketua->position_title }}
@@ -46,7 +46,7 @@
 
                 @if($wakil)
                     <div class="border border-[#E5E5E5] p-4 bg-white text-center space-y-4">
-                        <img src="{{ $wakil->photo_url }}" alt="{{ $wakil->name }}" class="w-40 h-48 mx-auto object-cover object-center filter grayscale-10">
+                        <img src="{{ $wakil->photo_url }}" alt="{{ $wakil->name }}" loading="lazy" decoding="async" class="w-40 h-48 mx-auto object-cover object-center filter grayscale-10">
                         <div>
                             <span class="inline-block px-3 py-1 bg-neutral-100 text-[#1F1F1F] text-[10px] font-bold uppercase tracking-wider border border-[#E5E5E5]">
                                 {{ $wakil->position_title }}
@@ -72,7 +72,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 @if($sekretaris)
                     <div class="border border-[#E5E5E5] p-4 bg-white text-center space-y-4">
-                        <img src="{{ $sekretaris->photo_url }}" alt="{{ $sekretaris->name }}" class="w-36 h-44 mx-auto object-cover object-center filter grayscale-10">
+                        <img src="{{ $sekretaris->photo_url }}" alt="{{ $sekretaris->name }}" loading="lazy" decoding="async" class="w-36 h-44 mx-auto object-cover object-center filter grayscale-10">
                         <div>
                             <span class="inline-block px-3 py-1 bg-neutral-100 text-[#1F1F1F] text-[10px] font-bold uppercase tracking-wider border border-[#E5E5E5]">
                                 {{ $sekretaris->position_title }}
@@ -88,7 +88,7 @@
 
                 @if($bendahara)
                     <div class="border border-[#E5E5E5] p-4 bg-white text-center space-y-4">
-                        <img src="{{ $bendahara->photo_url }}" alt="{{ $bendahara->name }}" class="w-36 h-44 mx-auto object-cover object-center filter grayscale-10">
+                        <img src="{{ $bendahara->photo_url }}" alt="{{ $bendahara->name }}" loading="lazy" decoding="async" class="w-36 h-44 mx-auto object-cover object-center filter grayscale-10">
                         <div>
                             <span class="inline-block px-3 py-1 bg-neutral-100 text-[#1F1F1F] text-[10px] font-bold uppercase tracking-wider border border-[#E5E5E5]">
                                 {{ $bendahara->position_title }}
@@ -114,7 +114,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($koordinators as $koor)
                     <div class="border border-[#E5E5E5] p-4 bg-white space-y-3">
-                        <img src="{{ $koor->photo_url }}" alt="{{ $koor->name }}" class="w-full h-52 object-cover object-center filter grayscale-10">
+                        <img src="{{ $koor->photo_url }}" alt="{{ $koor->name }}" loading="lazy" decoding="async" class="w-full h-52 object-cover object-center filter grayscale-10">
                         <div>
                             <span class="block text-xs font-semibold text-[#8B1E24]">{{ $koor->position_title }}</span>
                             <h3 class="text-sm font-bold text-[#1F1F1F] mt-1">{{ $koor->name }}</h3>

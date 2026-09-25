@@ -17,11 +17,15 @@ class WorkProgramController extends Controller
 
         $programs = $query->orderBy('status', 'asc')->orderBy('created_at', 'desc')->get();
 
+        $counts = WorkProgram::selectRaw('status, count(*) as count')
+            ->groupBy('status')
+            ->pluck('count', 'status');
+
         $stats = [
-            'total' => WorkProgram::count(),
-            'berjalan' => WorkProgram::where('status', 'berjalan')->count(),
-            'selesai' => WorkProgram::where('status', 'selesai')->count(),
-            'rencana' => WorkProgram::where('status', 'rencana')->count(),
+            'total' => $counts->sum(),
+            'berjalan' => $counts->get('berjalan', 0),
+            'selesai' => $counts->get('selesai', 0),
+            'rencana' => $counts->get('rencana', 0),
         ];
 
         return view('pages.work-programs', compact('programs', 'stats'));

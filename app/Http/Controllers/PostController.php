@@ -41,7 +41,8 @@ class PostController extends Controller
         // Increment view count safely
         $post->increment('views_count');
 
-        $relatedPosts = Post::published()
+        $relatedPosts = Post::with('category')
+            ->published()
             ->where('id', '!=', $post->id)
             ->where('category_id', $post->category_id)
             ->take(3)

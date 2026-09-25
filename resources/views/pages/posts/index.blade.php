@@ -58,6 +58,8 @@
                 <div class="lg:col-span-7 overflow-hidden">
                     <img src="{{ $featuredPost->thumbnail_url }}"
                          alt="{{ $featuredPost->title }}"
+                         fetchpriority="high"
+                         decoding="async"
                          class="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="lg:col-span-5 space-y-4">
@@ -95,6 +97,8 @@
                     <a href="{{ route('posts.show', $post->slug) }}" class="overflow-hidden">
                         <img src="{{ $post->thumbnail_url }}"
                              alt="{{ $post->title }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-48 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                     </a>
                     <div class="p-6 flex-1 flex flex-col justify-between space-y-4">

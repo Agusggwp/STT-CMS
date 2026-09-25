@@ -60,6 +60,8 @@
                     <a href="{{ route('activities.show', $act->slug) }}" class="overflow-hidden">
                         <img src="{{ $act->thumbnail_url }}"
                              alt="{{ $act->title }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-56 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                     </a>
                     <div class="p-6 flex-1 flex flex-col justify-between space-y-4">

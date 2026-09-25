@@ -48,6 +48,8 @@
                     <div class="overflow-hidden">
                         <img src="{{ $img->image_url }}"
                              alt="{{ $img->caption ?? $album->title }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-64 sm:h-72 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                     </div>
                     @if($img->caption)
@@ -87,7 +89,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     @foreach($otherAlbums as $oa)
                         <a href="{{ route('gallery.show', $oa->slug) }}" class="border border-[#E5E5E5] p-2 bg-white block group hover:border-[#8B1E24]">
-                            <img src="{{ $oa->cover_image_url }}" alt="{{ $oa->title }}" class="w-full h-40 object-cover object-center">
+                            <img src="{{ $oa->cover_image_url }}" alt="{{ $oa->title }}" loading="lazy" decoding="async" class="w-full h-40 object-cover object-center">
                             <span class="block text-[11px] text-[#8B1E24] font-semibold uppercase mt-2">{{ $oa->category }}</span>
                             <h4 class="text-xs font-bold text-[#1F1F1F] mt-1 group-hover:text-[#8B1E24] truncate">{{ $oa->title }}</h4>
                         </a>

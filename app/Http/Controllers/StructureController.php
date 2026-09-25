@@ -10,18 +10,20 @@ class StructureController extends Controller
 {
     public function index()
     {
-        $positions = OrganizationalPosition::with(['members' => function ($q) {
-            $q->where('is_active', true)->orderBy('order', 'asc');
-        }])
-            ->orderBy('level', 'asc')
+        $positions = OrganizationalPosition::orderBy('level', 'asc')
             ->orderBy('order', 'asc')
             ->get();
 
-        $ketua = Member::whereHas('position', fn($q) => $q->where('code', 'KETUA'))->first();
-        $wakil = Member::whereHas('position', fn($q) => $q->where('code', 'WAKIL_KETUA'))->first();
-        $sekretaris = Member::whereHas('position', fn($q) => $q->where('code', 'SEKRETARIS'))->first();
-        $bendahara = Member::whereHas('position', fn($q) => $q->where('code', 'BENDAHARA'))->first();
-        $koordinators = Member::whereHas('position', fn($q) => $q->where('level', 3))->orderBy('order', 'asc')->get();
+        $members = Member::with('position')
+            ->where('is_active', true)
+            ->orderBy('order', 'asc')
+            ->get();
+
+        $ketua = $members->first(fn($m) => $m->position?->code === 'KETUA');
+        $wakil = $members->first(fn($m) => $m->position?->code === 'WAKIL_KETUA');
+        $sekretaris = $members->first(fn($m) => $m->position?->code === 'SEKRETARIS');
+        $bendahara = $members->first(fn($m) => $m->position?->code === 'BENDAHARA');
+        $koordinators = $members->filter(fn($m) => $m->position?->level === 3);
 
         return view('pages.structure', compact('positions', 'ketua', 'wakil', 'sekretaris', 'bendahara', 'koordinators'));
     }

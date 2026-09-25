@@ -15,7 +15,7 @@ class GalleryController extends Controller
             ->distinct()
             ->pluck('category');
 
-        $query = GalleryAlbum::with(['images' => fn($q) => $q->orderBy('order', 'asc')])
+        $query = GalleryAlbum::withCount('images')
             ->published();
 
         if ($request->filled('kategori')) {

@@ -42,12 +42,14 @@
                         <a href="{{ route('gallery.show', $alb->slug) }}" class="block overflow-hidden">
                             <img src="{{ $alb->cover_image_url }}"
                                  alt="{{ $alb->title }}"
+                                 loading="lazy"
+                                 decoding="async"
                                  class="w-full h-64 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                         </a>
                         <div class="p-4 space-y-2">
                             <div class="flex items-center justify-between text-xs text-[#6B6B6B]">
                                 <span class="font-bold text-[#8B1E24] uppercase tracking-wider">{{ $alb->category }}</span>
-                                <span>{{ $alb->images->count() }} Foto</span>
+                                <span>{{ $alb->images_count ?? $alb->images->count() }} Foto</span>
                             </div>
                             <h3 class="text-base font-bold text-[#1F1F1F] group-hover:text-[#8B1E24] transition-colors">
                                 <a href="{{ route('gallery.show', $alb->slug) }}">{{ $alb->title }}</a>
@@ -92,6 +94,8 @@
                         <div class="border border-[#E5E5E5] p-1.5 bg-white group">
                             <img src="{{ $hImg->image_url }}"
                                  alt="{{ $hImg->caption ?? 'Foto STT Bali' }}"
+                                 loading="lazy"
+                                 decoding="async"
                                  class="w-full h-48 object-cover object-center filter grayscale-15 group-hover:grayscale-0 transition-all duration-300">
                             @if($hImg->caption)
                                 <p class="text-[11px] text-[#6B6B6B] p-2 truncate">{{ $hImg->caption }}</p>

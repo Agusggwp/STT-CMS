@@ -78,6 +78,8 @@
                     <div class="p-2 border border-[#E5E5E5] bg-white">
                         <img src="{{ $heroImage }}"
                              alt="Pemuda STT Bali dalam kegiatan tradisi"
+                             fetchpriority="high"
+                             decoding="async"
                              class="w-full h-[280px] sm:h-[420px] lg:h-[480px] object-cover object-center filter grayscale-20 contrast-105">
                     </div>
                     {{-- Caption below photo --}}
@@ -165,6 +167,8 @@
                     <a href="{{ route('activities.show', $act->slug) }}" class="overflow-hidden">
                         <img src="{{ $act->thumbnail_url }}"
                              alt="{{ $act->title }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-56 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                     </a>
                     <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
@@ -273,12 +277,14 @@
                     <a href="{{ route('gallery.show', $alb->slug) }}" class="block overflow-hidden">
                         <img src="{{ $alb->cover_image_url }}"
                              alt="{{ $alb->title }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-64 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                     </a>
                     <div class="p-3">
                         <div class="flex items-center justify-between text-[11px] text-[#6B6B6B]">
                             <span class="font-semibold text-[#8B1E24] uppercase tracking-wider">{{ $alb->category }}</span>
-                            <span>{{ $alb->images->count() }} Foto</span>
+                            <span>{{ $alb->images_count ?? $alb->images->count() }} Foto</span>
                         </div>
                         <h3 class="text-sm font-bold text-[#1F1F1F] mt-1 group-hover:text-[#8B1E24] transition-colors truncate">
                             <a href="{{ route('gallery.show', $alb->slug) }}">{{ $alb->title }}</a>
@@ -316,6 +322,8 @@
                     <a href="{{ route('posts.show', $post->slug) }}" class="overflow-hidden">
                         <img src="{{ $post->thumbnail_url }}"
                              alt="{{ $post->title }}"
+                             loading="lazy"
+                             decoding="async"
                              class="w-full h-48 object-cover object-center group-hover:scale-102 transition-transform duration-300">
                     </a>
                     <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
